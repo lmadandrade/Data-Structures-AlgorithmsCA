@@ -8,6 +8,6 @@ package bloodtestscheduler;
  *
  * @author lucasandrade
  */
-public class PersonRecord {
+public class Patient {
     
 }
