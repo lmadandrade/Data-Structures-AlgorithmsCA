@@ -24,12 +24,14 @@ public class MissedPatientsList {
         this.missedPatients = new LinkedList<>();
     }
     
+    
     public void addMissedPatient(Patient patient) {
-        if (missedPatients.size() == 5) {
-            missedPatients.remove(0); // this will remove the oldest no-show patient
-        }
+        if (!missedPatients.isEmpty() && missedPatients.size() == 5) { 
+            missedPatients.remove(0); // this will remove the oldest no-show patient only if it's not empty
+            }
         missedPatients.add(patient);
     }
+
     
     // Retrieving the list of the last 5 no-show patients:
     public List<Patient> getMissedPatients() {

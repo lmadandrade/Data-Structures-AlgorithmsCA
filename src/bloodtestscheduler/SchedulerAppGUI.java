@@ -4,17 +4,25 @@
  */
 package bloodtestscheduler;
 
+import java.util.List;
+
 /**
  *
  * @author lucasandrade
  */
 public class SchedulerAppGUI extends javax.swing.JFrame {
 
+    // instance of BloodTestScheduler and MissedPatientsList
+    private BloodTestScheduler scheduler = new BloodTestScheduler();
+    private MissedPatientsList missedList = new MissedPatientsList();
+    
     /**
      * Creates new form SchedulerAppGUI
      */
     public SchedulerAppGUI() {
         initComponents();
+       
+
     }
 
     /**
@@ -26,21 +34,411 @@ public class SchedulerAppGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel1 = new javax.swing.JPanel();
+        BloodTestScheduler_Label = new javax.swing.JLabel();
+        patient_Name_Label = new javax.swing.JLabel();
+        priority_Level_Label = new javax.swing.JLabel();
+        age_Label = new javax.swing.JLabel();
+        from_Hospital_Label = new javax.swing.JLabel();
+        gp_Name_Label = new javax.swing.JLabel();
+        fromHospital_CheckBox = new javax.swing.JCheckBox();
+        patient_Name_Text = new javax.swing.JTextField();
+        age_Text = new javax.swing.JTextField();
+        gp_Name_Text = new javax.swing.JTextField();
+        priority_CBox = new javax.swing.JComboBox<>();
+        add_Patient_Button = new javax.swing.JButton();
+        process_Next_Button = new javax.swing.JButton();
+        view_Patients_Button = new javax.swing.JButton();
+        mark_noShow_Button = new javax.swing.JButton();
+        view_Missed_Button = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        display_TextArea = new javax.swing.JTextArea();
+        jSeparator3 = new javax.swing.JSeparator();
+        reset_Button = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setToolTipText("");
+
+        BloodTestScheduler_Label.setFont(new java.awt.Font("Apple SD Gothic Neo", 1, 36)); // NOI18N
+        BloodTestScheduler_Label.setForeground(new java.awt.Color(204, 0, 0));
+        BloodTestScheduler_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BloodTestScheduler_Label.setText("Blood Test Scheduler");
+        BloodTestScheduler_Label.setToolTipText("");
+
+        patient_Name_Label.setFont(new java.awt.Font("Heiti SC", 1, 14)); // NOI18N
+        patient_Name_Label.setText("Patient Name:");
+        patient_Name_Label.setToolTipText("");
+
+        priority_Level_Label.setFont(new java.awt.Font("Heiti TC", 1, 14)); // NOI18N
+        priority_Level_Label.setText("Priority Level:");
+        priority_Level_Label.setToolTipText("");
+
+        age_Label.setFont(new java.awt.Font("Heiti TC", 1, 14)); // NOI18N
+        age_Label.setText("Age:");
+        age_Label.setToolTipText("");
+
+        from_Hospital_Label.setFont(new java.awt.Font("Heiti TC", 1, 14)); // NOI18N
+        from_Hospital_Label.setText("From Hospital:");
+        from_Hospital_Label.setToolTipText("");
+
+        gp_Name_Label.setFont(new java.awt.Font("Heiti TC", 1, 14)); // NOI18N
+        gp_Name_Label.setText("GP Name:");
+        gp_Name_Label.setToolTipText("");
+
+        fromHospital_CheckBox.setToolTipText("");
+        fromHospital_CheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fromHospital_CheckBoxActionPerformed(evt);
+            }
+        });
+
+        patient_Name_Text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patient_Name_TextActionPerformed(evt);
+            }
+        });
+
+        age_Text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                age_TextActionPerformed(evt);
+            }
+        });
+
+        priority_CBox.setFont(new java.awt.Font("Heiti TC", 1, 13)); // NOI18N
+        priority_CBox.setForeground(new java.awt.Color(51, 51, 51));
+        priority_CBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Priority", "Low", "Medium", "Urgent" }));
+
+        add_Patient_Button.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        add_Patient_Button.setForeground(new java.awt.Color(102, 102, 102));
+        add_Patient_Button.setText("Add ");
+        add_Patient_Button.setToolTipText("");
+        add_Patient_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_Patient_ButtonActionPerformed(evt);
+            }
+        });
+
+        process_Next_Button.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        process_Next_Button.setForeground(new java.awt.Color(102, 102, 102));
+        process_Next_Button.setText("Next Patient");
+        process_Next_Button.setToolTipText("");
+        process_Next_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                process_Next_ButtonActionPerformed(evt);
+            }
+        });
+
+        view_Patients_Button.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        view_Patients_Button.setForeground(new java.awt.Color(102, 102, 102));
+        view_Patients_Button.setText("View Scheduled Patients");
+        view_Patients_Button.setToolTipText("");
+        view_Patients_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view_Patients_ButtonActionPerformed(evt);
+            }
+        });
+
+        mark_noShow_Button.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        mark_noShow_Button.setForeground(new java.awt.Color(102, 102, 102));
+        mark_noShow_Button.setText("No-Show");
+        mark_noShow_Button.setToolTipText("");
+        mark_noShow_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mark_noShow_ButtonActionPerformed(evt);
+            }
+        });
+
+        view_Missed_Button.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        view_Missed_Button.setForeground(new java.awt.Color(102, 102, 102));
+        view_Missed_Button.setText("View Missed Patients");
+        view_Missed_Button.setToolTipText("");
+        view_Missed_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view_Missed_ButtonActionPerformed(evt);
+            }
+        });
+
+        display_TextArea.setEditable(false);
+        display_TextArea.setColumns(20);
+        display_TextArea.setRows(5);
+        jScrollPane1.setViewportView(display_TextArea);
+
+        reset_Button.setFont(new java.awt.Font("Menlo", 0, 14)); // NOI18N
+        reset_Button.setForeground(new java.awt.Color(102, 102, 102));
+        reset_Button.setText("Reset");
+        reset_Button.setToolTipText("");
+        reset_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reset_ButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BloodTestScheduler_Label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 16, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(gp_Name_Label)
+                            .addComponent(age_Label)
+                            .addComponent(priority_Level_Label)
+                            .addComponent(patient_Name_Label)
+                            .addComponent(from_Hospital_Label)
+                            .addComponent(add_Patient_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(fromHospital_CheckBox)
+                                .addComponent(gp_Name_Text)
+                                .addComponent(age_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(priority_CBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(patient_Name_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(reset_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(view_Missed_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(view_Patients_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(process_Next_Button)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mark_noShow_Button)))
+                        .addGap(25, 25, 25))
+                    .addComponent(jSeparator4))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(BloodTestScheduler_Label)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(patient_Name_Label)
+                    .addComponent(patient_Name_Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(priority_Level_Label)
+                    .addComponent(priority_CBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(age_Label)
+                    .addComponent(age_Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(from_Hospital_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fromHospital_CheckBox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(gp_Name_Label)
+                            .addComponent(gp_Name_Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(view_Patients_Button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(view_Missed_Button)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(process_Next_Button)
+                    .addComponent(mark_noShow_Button)
+                    .addComponent(add_Patient_Button)
+                    .addComponent(reset_Button))
+                .addGap(12, 12, 12)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void fromHospital_CheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fromHospital_CheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fromHospital_CheckBoxActionPerformed
+
+    private void patient_Name_TextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patient_Name_TextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patient_Name_TextActionPerformed
+
+    private void age_TextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_age_TextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_age_TextActionPerformed
+
+    private void add_Patient_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_Patient_ButtonActionPerformed
+        // Add button will retrieve input values
+        String name = patient_Name_Text.getText().trim();
+        String priority = (String) priority_CBox.getSelectedItem();
+        String ageText = age_Text.getText().trim();
+        boolean fromHospital = fromHospital_CheckBox.isSelected();
+        String gpName = gp_Name_Text.getText().trim();
+
+        // check if input is valid
+        if (name.isEmpty() || gpName.isEmpty() || priority.equals("Select Priority")) {
+            display_TextArea.setForeground(new java.awt.Color(139, 0, 0)); // red colour for error
+            display_TextArea.setText("Error: All fields must be filled!");
+            return;
+        }
+
+        // check if age is a valid number
+        int age;
+        try {
+            age = Integer.parseInt(ageText); // parse string to integer
+            if (age <= 0) { 
+                display_TextArea.setForeground(new java.awt.Color(139, 0, 0));
+                display_TextArea.setText("Error: Age must be a positive number!");
+                return;
+            }
+        } catch (NumberFormatException e) { // non-numeric input handling
+            display_TextArea.setForeground(new java.awt.Color(139, 0, 0));
+            display_TextArea.setText("Error: Age must be a valid number!");
+            return;
+        }
+
+        // This will create a new patient and add to queue
+        Patient newPatient = new Patient(name, priority, age, fromHospital, gpName);
+        scheduler.addPatient(newPatient); // add patient to the scheduling queue
+
+        // This will display confirmation message if patient is successfully added
+        display_TextArea.setForeground(new java.awt.Color(0, 100, 0)); // Green colour for successful operation
+        display_TextArea.setText("Patient added: " + newPatient);
+    }//GEN-LAST:event_add_Patient_ButtonActionPerformed
+
+    private void process_Next_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_process_Next_ButtonActionPerformed
+        // this will retrive the next patient from the queue
+        Patient nextPatient = scheduler.getNextPatient();
+
+        if (nextPatient != null) {
+            display_TextArea.setForeground(java.awt.Color.BLACK);
+            display_TextArea.setText("Processing next patient:\n" + nextPatient);
+        } else {
+            // if no patients in queue, show error message
+            display_TextArea.setForeground(new java.awt.Color(139, 0, 0));
+            display_TextArea.setText("No more patients left in the queue. Add a new patient to continue.");
+        }
+    }//GEN-LAST:event_process_Next_ButtonActionPerformed
+
+    private void view_Patients_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_Patients_ButtonActionPerformed
+        // This will retrieve the list of already processed patients
+        List<Patient> scheduled = scheduler.getScheduledPatients();
+
+        // This will retrieve patients still in the queue
+        List<Patient> queuedPatients = scheduler.getQueuedPatients(); 
+
+        if (scheduled.isEmpty() && queuedPatients.isEmpty()) {
+            // if no patients scheduled or in queue, then show error
+            display_TextArea.setForeground(new java.awt.Color(139, 0, 0));
+            display_TextArea.setText("No scheduled patients.");
+        } else {
+            // display scheduled & queued patients 
+            display_TextArea.setForeground(java.awt.Color.BLACK);
+
+            // Format output for better readability
+            StringBuilder sb = new StringBuilder("📋 Scheduled & Queued Patients:\n-----------------------------------\n");
+
+            // Add patients still in the queue
+            if (!queuedPatients.isEmpty()) {
+                sb.append("🔹 Patients in Queue:\n");
+                for (int i = 0; i < queuedPatients.size(); i++) {
+                    sb.append((i + 1)).append(". ").append(queuedPatients.get(i)).append("\n");
+                }
+                sb.append("-----------------------------------\n");
+            }
+
+            // Add patients who have already been processed before
+            if (!scheduled.isEmpty()) {
+                sb.append("✅ Already Processed Patients:\n");
+                for (int i = 0; i < scheduled.size(); i++) {
+                    sb.append((i + 1)).append(". ").append(scheduled.get(i)).append("\n");
+                }
+            }
+            display_TextArea.setText(sb.toString());
+        }
+    }//GEN-LAST:event_view_Patients_ButtonActionPerformed
+
+    private void mark_noShow_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mark_noShow_ButtonActionPerformed
+        // This will retrieve the list of already processed patients
+        List<Patient> scheduled = scheduler.getScheduledPatients();
+
+        if (scheduled.isEmpty()) {
+            // If no processed patients exist, show error
+            display_TextArea.setForeground(new java.awt.Color(139, 0, 0)); 
+            display_TextArea.setText("Error: No processed patients to mark as No-Show!");
+            return;
+        }
+
+        // This will get the last processed patient
+        Patient lastProcessed = scheduled.get(scheduled.size() - 1); 
+
+        // Add them to the missed list
+        missedList.addMissedPatient(lastProcessed);
+
+        // Confirmation message
+        display_TextArea.setForeground(new java.awt.Color(0, 100, 0));
+        display_TextArea.setText("Marked as No-Show: " + lastProcessed);
+    }//GEN-LAST:event_mark_noShow_ButtonActionPerformed
+
+    private void view_Missed_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_Missed_ButtonActionPerformed
+        // This will retrieve the list of missed patients
+        List<Patient> missedPatients = missedList.getMissedPatients();
+
+        if (missedPatients.isEmpty()) {
+            // If no missed patients exist, show error
+            display_TextArea.setForeground(new java.awt.Color(139, 0, 0));
+            display_TextArea.setText("No missed patients!");
+            return;
+        }
+
+        // Display the list of missed patients
+        display_TextArea.setForeground(java.awt.Color.BLACK);
+
+        // Format output for better readability
+        StringBuilder sb = new StringBuilder("🚫 Missed Patients (Last 5 No-Shows):\n-----------------------------------\n");
+        for (int i = 0; i < missedPatients.size(); i++) {
+            sb.append((i + 1)).append(". ").append(missedPatients.get(i)).append("\n");
+        }
+        display_TextArea.setText(sb.toString());
+    }//GEN-LAST:event_view_Missed_ButtonActionPerformed
+
+    private void reset_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_ButtonActionPerformed
+       // reset button will clean the current input to restart operation                                     
+        patient_Name_Text.setText("");
+        age_Text.setText("");
+        gp_Name_Text.setText("");
+        fromHospital_CheckBox.setSelected(false);
+        priority_CBox.setSelectedIndex(0); // dropdown to "Select Priority" which is 0
+        display_TextArea.setText("");
+    }//GEN-LAST:event_reset_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +476,31 @@ public class SchedulerAppGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BloodTestScheduler_Label;
+    private javax.swing.JButton add_Patient_Button;
+    private javax.swing.JLabel age_Label;
+    private javax.swing.JTextField age_Text;
+    private javax.swing.JTextArea display_TextArea;
+    private javax.swing.JCheckBox fromHospital_CheckBox;
+    private javax.swing.JLabel from_Hospital_Label;
+    private javax.swing.JLabel gp_Name_Label;
+    private javax.swing.JTextField gp_Name_Text;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton mark_noShow_Button;
+    private javax.swing.JLabel patient_Name_Label;
+    private javax.swing.JTextField patient_Name_Text;
+    private javax.swing.JComboBox<String> priority_CBox;
+    private javax.swing.JLabel priority_Level_Label;
+    private javax.swing.JButton process_Next_Button;
+    private javax.swing.JButton reset_Button;
+    private javax.swing.JButton view_Missed_Button;
+    private javax.swing.JButton view_Patients_Button;
     // End of variables declaration//GEN-END:variables
 }
+
+

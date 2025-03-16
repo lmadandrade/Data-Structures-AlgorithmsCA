@@ -13,15 +13,15 @@ public class Patient {
     private String priority; // urgent, medium or low
     private int age;
     private boolean fromHospital; // if coming from a hospital ward = true
-    private String gpDetails;
+    private String gpName;
     
     // constructor
-    public Patient (String name, String priority, int age, boolean fromHospital, String gpDetails){
+    public Patient (String name, String priority, int age, boolean fromHospital, String gpName){
         this.name = name;
         this.priority = priority;
         this.age = age;
         this.fromHospital = fromHospital;
-        this.gpDetails = gpDetails;
+        this.gpName = gpName;
     }
     
     // getters for accessing patient details:
@@ -42,14 +42,14 @@ public class Patient {
         return fromHospital;
     }
 
-    public String getGpDetails() {
-        return gpDetails;
+    public String getGpName() {
+        return gpName;
     }
     
     @Override
     public String toString() {
         return name + " (" + priority + ", " + age + " years, " + 
-               (fromHospital ? "Hospital" : "Home") + ", GP: " + gpDetails + ")";
+               (fromHospital ? "Hospital" : "Home") + ", GP: " + gpName + ")";
     }
     
     

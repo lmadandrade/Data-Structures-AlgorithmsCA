@@ -55,6 +55,11 @@ public class BloodTestScheduler {
         return patientQueue.isEmpty();
     }
     
+    public List<Patient> getQueuedPatients() {
+        return new ArrayList<>(patientQueue); // Returns current patients in queue
+    }
+
+    
 }
 
 // Comparator to determine patient priority. Project Requirements:
@@ -68,19 +73,29 @@ class PatientComparator implements Comparator<Patient> {
     
     public int compare(Patient p1, Patient p2) {
         
-        // Compare priority first
-        int priorityCompare = p2.getPriority().compareTo(p1.getPriority());
+        // Convert priority to numeric values
+        int priorityCompare = Integer.compare(getPriorityValue(p2.getPriority()), getPriorityValue(p1.getPriority()));
         if (priorityCompare != 0) {
-            return priorityCompare; // higher priority comes first
+            return priorityCompare; // Higher priority first
         }
-        
-        // if priority is the same, then compare age; older first
+
+        // If priority is the same, compare age (older first)
         int ageCompare = Integer.compare(p2.getAge(), p1.getAge());
         if (ageCompare != 0) {
             return ageCompare;
         }
 
-        // if age is also the same, then hospital patients should get priority
+        // If age is also the same, hospital patients get priority
         return Boolean.compare(p2.isFromHospital(), p1.isFromHospital());
+    }
+
+    // Convert priority from String to Integer
+    private int getPriorityValue(String priority) {
+        return switch (priority.toLowerCase()) {
+            case "urgent" -> 3;
+            case "medium" -> 2;
+            case "low" -> 1;
+            default -> 0; // default to 0 for unexpected values
+        };
     }
 }
