@@ -360,7 +360,7 @@ public class SchedulerAppGUI extends javax.swing.JFrame {
             display_TextArea.setForeground(new java.awt.Color(139, 0, 0));
             display_TextArea.setText("No scheduled patients.");
         } else {
-            // display scheduled & queued patients 
+            // display scheduled & queued patients using recursion
             display_TextArea.setForeground(java.awt.Color.BLACK);
 
             // Format output for better readability
@@ -369,19 +369,16 @@ public class SchedulerAppGUI extends javax.swing.JFrame {
             // Add patients still in the queue
             if (!queuedPatients.isEmpty()) {
                 sb.append("🔹 Patients in Queue:\n");
-                for (int i = 0; i < queuedPatients.size(); i++) {
-                    sb.append((i + 1)).append(". ").append(queuedPatients.get(i)).append("\n");
-                }
+                displayScheduledPatients(queuedPatients, 0, sb);  // Call recursive function
                 sb.append("-----------------------------------\n");
             }
 
             // Add patients who have already been processed before
             if (!scheduled.isEmpty()) {
                 sb.append("✅ Already Processed Patients:\n");
-                for (int i = 0; i < scheduled.size(); i++) {
-                    sb.append((i + 1)).append(". ").append(scheduled.get(i)).append("\n");
-                }
+                displayScheduledPatients(scheduled, 0, sb);  // Call recursive function
             }
+
             display_TextArea.setText(sb.toString());
         }
     }//GEN-LAST:event_view_Patients_ButtonActionPerformed
@@ -439,6 +436,15 @@ public class SchedulerAppGUI extends javax.swing.JFrame {
         priority_CBox.setSelectedIndex(0); // dropdown to "Select Priority" which is 0
         display_TextArea.setText("");
     }//GEN-LAST:event_reset_ButtonActionPerformed
+
+    // recursion will print the list of scheduled patients (Project requirement)
+    private void displayScheduledPatients(List<Patient> scheduled, int index, StringBuilder sb) {
+        if (index == scheduled.size()) {
+            return;
+        }
+        sb.append((index + 1)).append(". ").append(scheduled.get(index)).append("\n");
+        displayScheduledPatients(scheduled, index + 1, sb); 
+    }
 
     /**
      * @param args the command line arguments
